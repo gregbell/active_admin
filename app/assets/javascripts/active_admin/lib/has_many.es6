@@ -41,7 +41,12 @@ $(function() {
     parent.trigger((before_add = $.Event('has_many_add:before')), [parent]);
 
     if (!before_add.isDefaultPrevented()) {
-      let index = parent.data('has_many_index') || (parent.children('fieldset').length - 1);
+      let index = parent.data('has_many_index');
+
+      if (!index) {
+        index = parseInt($(this).data('lastInputIndex'));
+      }
+
       parent.data({has_many_index: ++index});
 
       const regex = new RegExp($(this).data('placeholder'), 'g');

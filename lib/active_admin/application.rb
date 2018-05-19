@@ -74,7 +74,7 @@ module ActiveAdmin
     def namespace(name)
       name ||= :root
 
-      namespace = namespaces[name] ||= begin
+      namespace = namespaces[build_name_path(name)] ||= begin
         namespace = Namespace.new(self, name)
         ActiveSupport::Notifications.publish ActiveAdmin::Namespace::RegisterEvent, namespace
         namespace
@@ -160,6 +160,10 @@ module ActiveAdmin
       controllers = [BaseController]
       controllers.push *Devise.controllers_for_filters if Dependency.devise?
       controllers
+    end
+
+    def build_name_path(name)
+      Array(name).map(&:to_s).map(&:underscore).map(&:to_sym)
     end
 
     private

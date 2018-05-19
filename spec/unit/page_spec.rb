@@ -25,6 +25,12 @@ module ActiveAdmin
           expect(config.controller_name).to eq "ChocolateILoveYouController"
         end
       end
+      context "when nest namespaced controller" do
+        let(:namespace){ ActiveAdmin::Namespace.new(application, [:foo, :bar]) }
+        it "should return a nest namespaced controller name" do
+          expect(config.controller_name).to eq "Foo::Bar::ChocolateILoveYouController"
+        end
+      end
     end
 
     describe "#resource_name" do
@@ -58,7 +64,29 @@ module ActiveAdmin
 
     describe "#namespace_name" do
       it "returns the name of the namespace" do
-        expect(config.namespace_name).to eq "admin"
+        ActiveSupport::Deprecation.silence do
+          expect(config.namespace_name).to eq "admin"
+        end
+      end
+      context "when nest namespaced controller" do
+        let(:namespace){ ActiveAdmin::Namespace.new(application, [:foo, :bar]) }
+        it "returns the name of the namespace" do
+          ActiveSupport::Deprecation.silence do
+            expect(config.namespace_name).to eq "foo"
+          end
+        end
+      end
+    end
+
+    describe "#namespace_name_path" do
+      it "returns the name of the namespace" do
+        expect(config.namespace_name_path).to eq [:admin]
+      end
+      context "when nest namespaced controller" do
+        let(:namespace){ ActiveAdmin::Namespace.new(application, [:foo, :bar]) }
+        it "returns the name of the namespace" do
+          expect(config.namespace_name_path).to eq [:foo, :bar]
+        end
       end
     end
 

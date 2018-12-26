@@ -1,5 +1,10 @@
 def ensure_user_created(email)
-  AdminUser.create_with(password: 'password', password_confirmation: 'password').find_or_create_by!(email: email)
+  user = AdminUser.where(email: email).first_or_create(password: 'password', password_confirmation: 'password')
+
+  unless user.persisted?
+    raise "Could not create user #{email}: #{user.errors.full_messages}"
+  end
+  user
 end
 
 Given /^(?:I am logged|log) out$/ do

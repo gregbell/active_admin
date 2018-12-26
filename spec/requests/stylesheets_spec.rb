@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Stylesheets", type: :request do
+
   require "sprockets"
 
   let(:css) do
@@ -13,4 +14,5 @@ RSpec.describe "Stylesheets", type: :request do
   it "should not have any syntax errors" do
     expect(css.to_s).to_not include("Syntax error:")
   end
+
 end

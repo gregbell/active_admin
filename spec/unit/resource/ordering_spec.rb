@@ -3,6 +3,7 @@ require 'rails_helper'
 module ActiveAdmin
   RSpec.describe Resource, "Ordering" do
     describe "#order_by" do
+
       let(:application) { ActiveAdmin::Application.new }
       let(:namespace) { ActiveAdmin::Namespace.new application, :admin }
       let(:resource_config) { ActiveAdmin::Resource.new namespace, Post }
@@ -10,7 +11,11 @@ module ActiveAdmin
 
       it "should register the ordering in the config" do
         dsl.run_registration_block do
-          order_by(:age, &:to_sql)
+          order_by(:age) do |order_clause|
+            if order_clause.order == 'desc'
+              [order_clause.to_sql, 'NULLS LAST'].join(' ')
+            end
+          end
         end
         expect(resource_config.ordering.size).to eq(1)
       end
@@ -22,7 +27,9 @@ module ActiveAdmin
         end
         expect(resource_config.order_clause).to eq(MyOrderClause)
         expect(application.order_clause).to eq(ActiveAdmin::OrderClause)
+
       end
+
     end
   end
 end

@@ -5,7 +5,7 @@ creating elegant backends for website administration.
 
 [![Version         ][rubygems_badge]][rubygems]
 [![Circle CI       ][circle_badge]][circle]
-[![Coverage        ][coverage_badge]][coverage]
+[![Coverage        ][codecov_badge]][codecov]
 [![Tidelift        ][tidelift_badge]][tidelift]
 [![Inch CI         ][inch_badge]][inch]
 
@@ -32,22 +32,16 @@ Google Groups, IRC #activeadmin and Gitter are not actively monitored.
 
 ## Want to contribute?
 
-If you want to contribute through code or documentation, the [Contributing
-guide is the best place to start][contributing]. If you have questions, feel free
-to ask.
+The [contributing guide][contributing]
+is a good place to start. If you have questions, feel free to ask.
 
 ## Want to support us?
 
-If you want to support us financially, you can [help fund the project
-through a Tidelift subscription][tidelift]. By buying a Tidelift subscription
-you make sure your whole dependency stack is properly maintained, while also
-getting a comprehensive view of outdated dependencies, new releases, security
-alerts, and licensing compatibility issues.
+Subscribe to [Tidelift][tidelift] to support Active Admin and get licensing assurances and timely security notifications.
 
-You can also support us with a weekly tip via [Liberapay].
+You can support us with a weekly tip via [Liberapay][liberapay.com].
 
-Finally, we have an [Open Collective][opencollective page] where you can become a backer or
-sponsor for the project, and also submit expenses to it.
+[![Support via Liberapay][liberapay_button]][liberapay_donate]
 
 ## Dependencies
 
@@ -62,18 +56,6 @@ Tool                  | Description
 [Kaminari]            | Elegant pagination for any sort of collection
 [Ransack]             | Provides a simple search API to query your data
 
-## Acknowledgements
-
-Thanks to [Greg Bell][Greg] for creating and sharing this project with the open source community.
-
-Thanks to [all the people that ever contributed through code][contributors] or
-other means such as bug reports, issue triaging, feature suggestions, code
-snippet tips, Slack discussions and so on.
-
-Thanks to [Tidelift][tidelift] and all our Tidelift subscribers.
-
-Thanks to [Open Collective][opencollective contributors] and all our Open Collective contributors.
-
 [Arbre]: https://github.com/activeadmin/arbre
 [Devise]: https://github.com/plataformatec/devise
 [Formtastic]: https://github.com/justinfrench/formtastic
@@ -85,8 +67,8 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [rubygems]: https://rubygems.org/gems/activeadmin
 [circle_badge]: https://circleci.com/gh/activeadmin/activeadmin/tree/master.svg
 [circle]: https://circleci.com/gh/activeadmin/activeadmin/tree/master
-[coverage_badge]: https://api.codeclimate.com/v1/badges/779e407d22bacff19733/test_coverage
-[coverage]: https://codeclimate.com/github/activeadmin/activeadmin/test_coverage
+[codecov_badge]: https://codecov.io/gh/activeadmin/activeadmin/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/activeadmin/activeadmin
 [inch_badge]: http://inch-ci.org/github/activeadmin/activeadmin.svg?branch=master
 [inch]: http://inch-ci.org/github/activeadmin/activeadmin
 [tidelift_badge]: https://tidelift.com/badges/github/activeadmin/activeadmin
@@ -97,8 +79,6 @@ Thanks to [Open Collective][opencollective contributors] and all our Open Collec
 [wiki]: https://github.com/activeadmin/activeadmin/wiki
 [stackoverflow]: http://stackoverflow.com/questions/tagged/activeadmin
 [contributing]: https://github.com/activeadmin/activeadmin/blob/master/CONTRIBUTING.md
-[Liberapay]: https://liberapay.com/Active-Admin/donate
-[Greg]: https://github.com/gregbell
-[contributors]: https://github.com/activeadmin/activeadmin/graphs/contributors
-[opencollective page]: https://opencollective.com/activeadmin
-[opencollective contributors]: https://opencollective.com/activeadmin#contributors
+[liberapay.com]: https://liberapay.com
+[liberapay_button]: https://liberapay.com/assets/widgets/donate.svg
+[liberapay_donate]: https://liberapay.com/Active-Admin/donate

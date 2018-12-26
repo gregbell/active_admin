@@ -7,7 +7,7 @@ Feature: Edit Page
     And a user named "John Doe" exists
     And a post with the title "Hello World" written by "John Doe" exists
     And I am logged in
-    And a configuration of:
+    Given a configuration of:
     """
       ActiveAdmin.register Post do
         permit_params :custom_category_id, :author_id, :title,
@@ -23,7 +23,7 @@ Feature: Edit Page
     And the "Category" field should contain ""
     And the "Author" field should contain the option "John Doe"
     When I fill in "Title" with "Hello World from update"
-    Then I should not see the element "Create another"
+    And I should not see the element "Create another"
     When I press "Update Post"
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
@@ -47,18 +47,18 @@ Feature: Edit Page
         end
       end
     """
-    And I follow "Edit"
+    Given I follow "Edit"
     Then I should see a fieldset titled "Your Post"
     And I should see a fieldset titled "Publishing"
     And the "Title" field should contain "Hello World"
     And the "Body" field should contain ""
     When I fill in "Title" with "Hello World from update"
-    And I press "Update Post"
+    When I press "Update Post"
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
 
-  Scenario: Generating a custom form with :html set, visiting the new page first
+  Scenario: Generating a custom form with :html set, visiting the new page first (bug probing issue #109)
     Given a configuration of:
     """
       ActiveAdmin.register Post do
@@ -76,20 +76,19 @@ Feature: Edit Page
         end
       end
     """
-    And I follow "New"
+    Given I follow "New"
     Then I follow "Posts"
-    And I follow "Edit"
-    And I should see a fieldset titled "Your Post"
+    Then I follow "Edit"
+    Then I should see a fieldset titled "Your Post"
     And I should see a fieldset titled "Publishing"
     And the "Title" field should contain "Hello World"
     And the "Body" field should contain ""
     When I fill in "Title" with "Hello World from update"
-    And I press "Update Post"
+    When I press "Update Post"
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
 
-  @changes-filesystem
   Scenario: Generating a form from a partial
     Given "app/views/admin/posts/_form.html.erb" contains:
     """
@@ -99,7 +98,7 @@ Feature: Edit Page
             f.actions
           end %>
     """
-    And a configuration of:
+    Given a configuration of:
     """
       ActiveAdmin.register Post do
         permit_params :category, :author, :title, :body, :published_date, :starred
@@ -107,11 +106,11 @@ Feature: Edit Page
         form partial: "form"
       end
     """
-    And I follow "Edit"
+    Given I follow "Edit"
     Then the "Title" field should contain "Hello World"
     And the "Body" field should contain ""
     When I fill in "Title" with "Hello World from update"
-    And I press "Update Post"
+    When I press "Update Post"
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"

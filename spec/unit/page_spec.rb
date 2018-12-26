@@ -1,9 +1,11 @@
 require 'rails_helper'
-require File.expand_path('config_shared_examples', __dir__)
+require File.expand_path('config_shared_examples', File.dirname(__FILE__))
 
 module ActiveAdmin
   RSpec.describe Page do
+
     it_should_behave_like "ActiveAdmin::Resource"
+    before { load_defaults! }
 
     let(:application){ ActiveAdmin::Application.new }
     let(:namespace){ Namespace.new(application, :admin) }

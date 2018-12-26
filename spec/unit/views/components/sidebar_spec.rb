@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Sidebar do
+
   let(:section) do
     ActiveAdmin::SidebarSection.new("Section") do
       para 'Section content.'

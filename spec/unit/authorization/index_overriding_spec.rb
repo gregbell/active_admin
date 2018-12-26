@@ -19,4 +19,5 @@ RSpec.describe 'Index overriding', type: :controller do
     get :index
     expect(response.body).to eq 'Rendered from passed block'
   end
+
 end

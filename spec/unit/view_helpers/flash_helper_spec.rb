@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::ViewHelpers::FlashHelper do
+
   describe '.flash_messages' do
     let(:view) { mock_action_view }
 
@@ -18,5 +19,6 @@ RSpec.describe ActiveAdmin::ViewHelpers::FlashHelper do
       expect(view.flash_messages).to include 'alert'
       expect(view.flash_messages).to_not include 'hideme'
     end
+
   end
 end

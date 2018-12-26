@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Menu do
+
   let(:menu){ ActiveAdmin::Menu.new }
 
   let(:assigns){ { active_admin_menu: menu } }
@@ -20,6 +21,7 @@ RSpec.describe ActiveAdmin::Views::Menu do
   end
 
   describe "rendering a menu" do
+
     before do
       menu.add label: "Blog Posts", url: :admin_posts_path
 
@@ -103,6 +105,7 @@ RSpec.describe ActiveAdmin::Views::Menu do
     end
 
     describe "marking current item" do
+
       it "should add the 'current' class to the li" do
         assigns[:current_tab] = menu["Blog Posts"]
         expect(html).to have_selector("li.current")
@@ -114,10 +117,13 @@ RSpec.describe ActiveAdmin::Views::Menu do
         expect(html).to have_selector("li#reports.has_nested")
         expect(html).to have_selector("li#a_sub_reports.current")
       end
+
     end
+
   end
 
   describe "returning the menu items to display" do
+
     it "should return one item with no if block" do
       menu.add label: "Hello World", url: "/"
       expect(menu_component.children.map(&:id)).to eq %w(hello_world)
@@ -147,6 +153,7 @@ RSpec.describe ActiveAdmin::Views::Menu do
       end
       expect(menu_component.children.size).to eq(1)
     end
+
   end
 
   describe "sorting items" do

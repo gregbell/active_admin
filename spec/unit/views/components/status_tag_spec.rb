@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::StatusTag do
+
   describe "#status_tag" do
+
     # Helper method to build StatusTag objects in an Arbre context
     def status_tag(*args)
       render_arbre_component(status_tag_args: args) do

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::BlankSlate do
+
   describe "#blank_slate" do
     subject do
       render_arbre_component do

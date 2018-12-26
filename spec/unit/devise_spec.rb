@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Devise::Controller do
+
   let(:controller_class) do
     klass = Class.new do
       def self.layout(*); end
@@ -23,6 +24,7 @@ RSpec.describe ActiveAdmin::Devise::Controller do
   end
 
   context 'with a RAILS_RELATIVE_URL_ROOT set' do
+
     around do |example|
       with_temp_relative_url_root('/foo') { example.call }
     end
@@ -35,9 +37,11 @@ RSpec.describe ActiveAdmin::Devise::Controller do
       allow(ActiveAdmin.application).to receive(:default_namespace).and_return(false)
       expect(controller.root_path).to eq "/foo/"
     end
+
   end
 
   context 'without a RAILS_RELATIVE_URL_ROOT set' do
+
     around do |example|
       with_temp_relative_url_root(nil) { example.call }
     end
@@ -50,9 +54,11 @@ RSpec.describe ActiveAdmin::Devise::Controller do
       allow(ActiveAdmin.application).to receive(:default_namespace).and_return(false)
       expect(controller.root_path).to eq "/"
     end
+
   end
 
   context "within a scoped route" do
+
     SCOPE = '/aa_scoped'
 
     before do
@@ -77,6 +83,7 @@ RSpec.describe ActiveAdmin::Devise::Controller do
     it "should include scope path in root_path" do
       expect(controller.root_path).to eq "#{SCOPE}/admin"
     end
+
   end
 
   describe "#config" do
@@ -96,6 +103,8 @@ RSpec.describe ActiveAdmin::Devise::Controller do
 
         expect(config[:sign_out_via]).to eq [:delete, :post, :get]
       end
+
     end # describe ":sign_out_via option"
   end # describe "#config"
+
 end

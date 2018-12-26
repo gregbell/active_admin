@@ -1,12 +1,8 @@
 module ActiveAdmin
   class CommentPolicy < ApplicationPolicy
-    def destroy?
-      record.author == user
-    end
-
-    class Scope < ApplicationPolicy::Scope
+    class Scope < Scope
       def resolve
-        scope.where(author: user)
+        scope
       end
     end
   end

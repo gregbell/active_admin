@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe ActiveAdmin::ResourceController::Decorators do
   let(:controller_class) do
     Class.new do
+      def self.name
+        "Test Controller using Decorators"
+      end
+
       include ActiveAdmin::ResourceController::Decorators
 
       public :apply_decorator, :apply_collection_decorator
@@ -62,6 +66,7 @@ RSpec.describe ActiveAdmin::ResourceController::Decorators do
         it 'has a good description for the generated class' do
           expect(applied.class.name).to eq "Draper::CollectionDecorator of PostDecorator + ActiveAdmin"
         end
+
       end
     end
   end
@@ -84,5 +89,6 @@ RSpec.describe ActiveAdmin::ResourceController::Decorators do
       let(:decorate_form) { true }
       it { is_expected.to be_kind_of(PostDecorator) }
     end
+
   end
 end

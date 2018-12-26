@@ -14,5 +14,5 @@ Feature: Namespace root
     """
       ActiveAdmin.application.root_to = 'stores#index'
     """
-    And I am logged in with capybara
+    Given I am logged in with capybara
     Then I should see the page title "Bookstores"

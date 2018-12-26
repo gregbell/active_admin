@@ -2,6 +2,7 @@ require 'rails_helper'
 require 'fileutils'
 
 RSpec.describe ActiveAdmin::Application do
+
   let(:application) { ActiveAdmin::Application.new }
 
   it "should have a default load path of ['app/admin']" do
@@ -12,7 +13,7 @@ RSpec.describe ActiveAdmin::Application do
     before { application.prepare! }
 
     it "should remove app/admin from the autoload paths" do
-      expect(ActiveSupport::Dependencies.autoload_paths).to_not include(Rails.root.join("app/admin"))
+      expect(ActiveSupport::Dependencies.autoload_paths).to_not include(File.join(Rails.root, "app/admin"))
     end
   end
 
@@ -104,6 +105,7 @@ RSpec.describe ActiveAdmin::Application do
   end
 
   describe "authentication settings" do
+
     it "should have no default current_user_method" do
       expect(application.current_user_method).to eq false
     end
@@ -126,7 +128,7 @@ RSpec.describe ActiveAdmin::Application do
       expect(application.files).to include(File.expand_path("app/admin/dashboard.rb", application.app_path))
     end
 
-    it "should load files from subdirectories", :changes_filesystem do
+    it "should load files from subdirectories" do
       test_dir = File.expand_path("app/admin/public", application.app_path)
       test_file = File.expand_path("app/admin/public/posts.rb", application.app_path)
 
@@ -135,13 +137,13 @@ RSpec.describe ActiveAdmin::Application do
         FileUtils.touch(test_file)
         expect(application.files).to include(test_file)
       ensure
-        ActiveSupport::Dependencies.clear
         FileUtils.remove_entry_secure(test_dir, force: true)
       end
     end
   end
 
   describe "#namespace" do
+
     it "should yield a new namespace" do
       application.namespace :new_namespace do |ns|
         expect(ns.name).to eq :new_namespace
@@ -178,4 +180,5 @@ RSpec.describe ActiveAdmin::Application do
       application.register_page("My Page", namespace: "public")
     end
   end
+
 end

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::CSVBuilder do
+
   describe '.default_for_resource using Post' do
     let(:application){ ActiveAdmin::Application.new }
     let(:namespace){ ActiveAdmin::Namespace.new(application, :admin) }
@@ -263,6 +264,10 @@ RSpec.describe ActiveAdmin::CSVBuilder do
           Post
         end
 
+        def apply_decorator(resource)
+          resource
+        end
+
         def view_context
         end
       end
@@ -307,9 +312,10 @@ RSpec.describe ActiveAdmin::CSVBuilder do
 
   skip '#exec_columns'
 
-  describe '#build_row' do
-    xit 'renders non-strings'
-    xit 'encodes values correctly'
-    xit 'passes custom encoding options to String#encode!'
+  skip '#build_row' do
+    it 'renders non-strings'
+    it 'encodes values correctly'
+    it 'passes custom encoding options to String#encode!'
   end
+
 end

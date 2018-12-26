@@ -4,9 +4,9 @@ Feature: New Page
 
   Background:
     Given a category named "Music" exists
-    And a user named "John Doe" exists
+    Given a user named "John Doe" exists
     And I am logged in
-    And a configuration of:
+    Given a configuration of:
     """
       ActiveAdmin.register Post do
         permit_params :custom_category_id, :author_id, :title,
@@ -46,7 +46,7 @@ Feature: New Page
         end
       end
     """
-    And I follow "New Post"
+    Given I follow "New Post"
     Then I should see a fieldset titled "Your Post"
     And I should see a fieldset titled "Publishing"
     When I fill in "Title" with "Hello World"
@@ -75,7 +75,7 @@ Feature: New Page
         end
       end
     """
-    And I follow "New Post"
+    Given I follow "New Post"
     Then I should see a fieldset titled "Your Post"
     And I should see a fieldset titled "Publishing"
     When I fill in "Virtual title" with "Hello World"
@@ -85,7 +85,6 @@ Feature: New Page
     And I should see the attribute "Title" with "Hello World"
     And I should see the attribute "Body" with "This is the body"
 
-  @changes-filesystem
   Scenario: Generating a form from a partial
     Given "app/views/admin/posts/_form.html.erb" contains:
     """
@@ -95,7 +94,7 @@ Feature: New Page
             f.actions
           end %>
     """
-    And a configuration of:
+    Given a configuration of:
     """
       ActiveAdmin.register Post do
         permit_params :custom_category_id, :author_id, :title, :body, :published_date, :starred
@@ -103,8 +102,8 @@ Feature: New Page
         form partial: "form"
       end
     """
-    When I follow "New Post"
-    And I fill in "Title" with "Hello World"
+    Given I follow "New Post"
+    When I fill in "Title" with "Hello World"
     And I fill in "Body" with "This is the body"
     And I press "Create Post"
     Then I should see "Post was successfully created."
@@ -132,6 +131,6 @@ Feature: New Page
         end
       end
     """
-    When I follow "New Post"
+    Given I follow "New Post"
     Then I should not see "Title"
     And I should see "Body"

@@ -3,14 +3,14 @@
 First off, thank you for considering contributing to Active Admin. It's people
 like you that make Active Admin such a great tool.
 
-### Where do I go from here?
+### 1. Where do I go from here?
 
 If you've noticed a bug or have a question that doesn't belong on the
 [mailing list][] or [Stack Overflow][], [search the issue tracker][] to see if
 someone else in the community has already created a ticket. If not, go ahead and
 [make one][new issue]!
 
-### Fork & create a branch
+### 2. Fork & create a branch
 
 If this is something you think you can fix, then [fork Active Admin][] and
 create a branch with a descriptive name.
@@ -21,7 +21,7 @@ A good branch name would be (where issue #325 is the ticket you're working on):
 git checkout -b 325-add-japanese-translations
 ```
 
-### Get the test suite running
+### 3. Get the test suite running
 
 Make sure you're using a recent ruby and have the `bundler` gem installed, at
 least version `1.14.3`.
@@ -38,10 +38,10 @@ bundle install
 Now you should be able to run the entire suite using:
 
 ```sh
-bin/rake
+bundle exec rake
 ```
 
-The test run will generate a sample Rails application in `tmp/rails` to run the
+The test run will generate a sample Rails application in `spec/rails` to run the
 tests against.
 
 If your tests are passing locally but they're failing on CircleCI, it's probably
@@ -62,7 +62,7 @@ you use the correct Gemfile, for example:
 export BUNDLE_GEMFILE=gemfiles/rails_51.gemfile
 ```
 
-### Did you find a bug?
+### 4. Did you find a bug?
 
 * **Ensure the bug was not already reported** by [searching all issues][].
 
@@ -91,7 +91,7 @@ a look at your changes in a browser.
 To boot up a test Rails app:
 
 ```sh
-bin/rake local server
+bundle exec rake local server
 ```
 
 This will automatically create a Rails app if none already exists, and store it
@@ -107,23 +107,23 @@ If you need to perform any other commands on the test application, just pass
 them to the `local` rake task. For example, to boot the rails console:
 
 ```sh
-bin/rake local console
+bundle exec rake local console
 ```
 
 Or to migrate the database:
 
 ```sh
-bin/rake local db:migrate
+bundle exec rake local db:migrate
 ```
 
-### Get the style right
+### 7. Get the style right
 
 Your patch should follow the same conventions & pass the same code quality
-checks as the rest of the project. `bin/rake lint` will give you feedback in
-this regard. You can check & fix style issues by running each linter
-individually. Run `bin/rake -T lint` to see the available linters.
+checks as the rest of the project. `bundle exec rake lint` will give you
+feedback in this regard. You can check & fix style issues by running each linter
+individually. Run `bundle exec rake -T lint` to see the available linters.
 
-### Make a Pull Request
+### 8. Make a Pull Request
 
 At this point, you should switch back to your master branch and make sure it's
 up to date with Active Admin's master branch:
@@ -151,7 +151,7 @@ another. In that case, you'll have to setup your development environment (as
 explained in step 3) to use the problematic Rails version, and investigate
 what's going on!
 
-### Keeping your Pull Request updated
+### 8. Keeping your Pull Request updated
 
 If a maintainer asks you to "rebase" your PR, they're saying that a lot of code
 has changed, and that you need to update your branch so it's easier to merge.
@@ -165,7 +165,7 @@ git pull --rebase upstream master
 git push --force-with-lease 325-add-japanese-translations
 ```
 
-### Merging a PR (maintainers only)
+### 10. Merging a PR (maintainers only)
 
 A PR can only be merged into master by a maintainer if:
 
@@ -178,15 +178,13 @@ A PR can only be merged into master by a maintainer if:
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.
 
-### Shipping a release (maintainers only)
+### 11. Shipping a release (maintainers only)
 
 Maintainers need to do the following to push out a release:
 
 * Make sure all pull requests are in and that changelog is current
 * Update `version.rb` file and changelog with new version number
-* If it's not a patch level release, create a stable branch for that release,
-  otherwise switch to the stable branch corresponding to the patch release you
-  want to ship:
+* Create a stable branch for that release:
 
   ```sh
   git checkout master
@@ -197,12 +195,8 @@ Maintainers need to do the following to push out a release:
   git push activeadmin N-N-stable:N-N-stable
   ```
 
-* Make sure you have [chandler] properly configured. Chandler is used to
-  automatically submit github release notes from the changelog right after
-  pushing the gem to rubygems.
-* `bin/rake release`
+* `bundle exec rake release`
 
-[chandler]: https://github.com/mattbrictson/chandler#2-configure-credentials
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/getting-started
 [mailing list]: http://groups.google.com/group/activeadmin
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/activeadmin
@@ -210,7 +204,7 @@ Maintainers need to do the following to push out a release:
 [new issue]: https://github.com/activeadmin/activeadmin/issues/new
 [fork Active Admin]: https://help.github.com/articles/fork-a-repo
 [searching all issues]: https://github.com/activeadmin/activeadmin/issues?q=
-[master template]: https://github.com/activeadmin/activeadmin/blob/master/tasks/bug_report_template.rb
+[master template]: https://github.com/activeadmin/activeadmin/blob/master/lib/bug_report_templates/active_admin_master.rb
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
 [git rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
 [interactive rebase]: https://help.github.com/articles/interactive-rebase

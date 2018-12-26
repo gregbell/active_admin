@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::AttributesTable do
+
   describe "creating with the dsl" do
     let(:helpers) { mock_action_view }
 
@@ -92,6 +93,7 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
             end
           end
         end # describe rendering rows
+
       end
     end # describe dsl styles
 
@@ -265,4 +267,5 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
       end
     end
   end
+
 end

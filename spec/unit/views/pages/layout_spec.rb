@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Pages::Layout do
+
   let(:assigns){ {} }
   let(:helpers) do
     helpers = mock_action_view
@@ -48,6 +49,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
   end
 
   describe "the body" do
+
     it "should have class 'active_admin'" do
       expect(layout.build.class_list).to include 'active_admin'
     end
@@ -55,5 +57,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Layout do
     it "should have namespace class" do
       expect(layout.build.class_list).to include "#{active_admin_namespace.name}_namespace"
     end
+
   end
+
 end

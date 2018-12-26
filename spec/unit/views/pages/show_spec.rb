@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Views::Pages::Show do
+
   describe "the resource" do
     let(:helpers) { double resource: resource }
     let(:arbre_context) { Arbre::Context.new({}, helpers) }
@@ -25,5 +26,7 @@ RSpec.describe ActiveAdmin::Views::Pages::Show do
         page.default_main_content(&block)
       end
     end
+
   end
+
 end

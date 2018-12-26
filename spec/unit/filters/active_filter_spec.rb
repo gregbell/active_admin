@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActiveAdmin::Filters::ActiveFilter do
+
   let(:namespace) do
     ActiveAdmin::Namespace.new(ActiveAdmin::Application.new, :admin)
   end
@@ -53,6 +54,7 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
     it 'should pick predicate name translation' do
       expect(subject.predicate_name).to eq(Ransack::Translate.predicate('eq'))
     end
+
   end
 
   context 'search by polymorphic association' do
@@ -125,7 +127,9 @@ RSpec.describe ActiveAdmin::Filters::ActiveFilter do
       it 'should have valid label' do
         expect(subject.label).to eq("Category equals")
       end
+
     end
+
   end
 
   context 'search has no matching records' do

@@ -6,7 +6,11 @@ class DefaultPolicy < ApplicationPolicy
   end
 
   def method_missing(method, *args, &block)
-    method.to_s[4...7] == "yes" if method.to_s[0...3] == "foo"
+    if method.to_s[0...3] == "foo"
+      method.to_s[4...7] == "yes"
+    else
+      super
+    end
   end
 
   class Scope
@@ -25,7 +29,9 @@ class DefaultPolicy < ApplicationPolicy
 end
 
 RSpec.describe ActiveAdmin::PunditAdapter do
+
   describe "full integration" do
+
     let(:application) { ActiveAdmin::Application.new }
     let(:namespace) { ActiveAdmin::Namespace.new(application, "Admin") }
     let(:resource) { namespace.register(Post) }
@@ -131,4 +137,5 @@ RSpec.describe ActiveAdmin::PunditAdapter do
       end
     end
   end
+
 end

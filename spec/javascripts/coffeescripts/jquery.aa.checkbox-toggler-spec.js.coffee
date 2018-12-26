@@ -47,3 +47,4 @@ describe "ActiveAdmin.CheckboxToggler", ->
 
       it "should check the 'toggle all' checkbox", ->
         expect(@toggle_all).toHaveAttr("checked")
+

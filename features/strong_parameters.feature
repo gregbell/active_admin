@@ -6,12 +6,12 @@ Feature: Strong Params
     And a user named "John Doe" exists
     And a post with the title "Hello World" written by "John Doe" exists
     And I am logged in
-    And a configuration of:
+    Given a configuration of:
     """
       ActiveAdmin.register Post do
       end
     """
-    And I am on the index page for posts
+    When I am on the index page for posts
 
   Scenario: Static permitted parameters
     Given a configuration of:
@@ -20,11 +20,11 @@ Feature: Strong Params
         permit_params :author, :title, :starred
       end
     """
-    When I follow "Edit"
+    Given I follow "Edit"
 
-    And I fill in "Title" with "Hello World from update"
+    When I fill in "Title" with "Hello World from update"
     And I check "Starred"
-    And I press "Update Post"
+    When I press "Update Post"
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
@@ -41,11 +41,11 @@ Feature: Strong Params
         end
       end
     """
-    When I follow "Edit"
+    Given I follow "Edit"
 
-    And I fill in "Title" with "Hello World from update"
+    When I fill in "Title" with "Hello World from update"
     And I check "Starred"
-    And I press "Update Post"
+    When I press "Update Post"
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"
@@ -58,11 +58,11 @@ Feature: Strong Params
         permit_params :author, :title
       end
     """
-    When I follow "Edit"
+    Given I follow "Edit"
 
-    And I fill in "Title" with "Hello World from update"
+    When I fill in "Title" with "Hello World from update"
     And I check "Starred"
-    And I press "Update Post"
+    When I press "Update Post"
     Then I should see "Post was successfully updated."
     And I should see the attribute "Title" with "Hello World from update"
     And I should see the attribute "Author" with "John Doe"

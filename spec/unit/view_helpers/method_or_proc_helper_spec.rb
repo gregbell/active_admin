@@ -10,6 +10,7 @@ RSpec.describe MethodOrProcHelper do
   end
 
   describe "#call_method_or_exec_proc" do
+
     it "should call the method in the context when a symbol" do
       expect(context.call_method_or_exec_proc(:receiver_in_context)).to eq receiver
     end
@@ -25,9 +26,11 @@ RSpec.describe MethodOrProcHelper do
         context.call_method_or_exec_proc(test_proc)
       }.to raise_error("Success")
     end
+
   end
 
   describe "#call_method_or_proc_on" do
+
     [:hello, 'hello'].each do |key|
       context "when a #{key.class}" do
         it "should call the method on the receiver" do
@@ -45,6 +48,7 @@ RSpec.describe MethodOrProcHelper do
     end
 
     context "when a proc" do
+
       it "should exec the block in the context and pass in the receiver" do
         test_proc = Proc.new do |arg|
           raise "Success!" if arg == receiver_in_context
@@ -64,9 +68,11 @@ RSpec.describe MethodOrProcHelper do
           context.call_method_or_proc_on(receiver, test_proc, "Hello")
         }.to raise_error("Success!")
       end
+
     end
 
     context "when a proc and exec: false" do
+
       it "should call the proc and pass in the receiver" do
         obj_not_in_context = double
 
@@ -78,7 +84,9 @@ RSpec.describe MethodOrProcHelper do
           context.call_method_or_proc_on(receiver, test_proc, exec: false)
         }.to raise_error("Success!")
       end
+
     end
+
   end
 
   describe "#render_or_call_method_or_proc_on" do
@@ -126,4 +134,5 @@ RSpec.describe MethodOrProcHelper do
       end
     end
   end
+
 end

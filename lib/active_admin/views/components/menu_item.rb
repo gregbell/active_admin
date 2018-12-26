@@ -18,7 +18,7 @@ module ActiveAdmin
         add_class "current" if item.current? assigns[:current_tab]
 
         if url
-          text_node link_to label, url, item.html_options
+          a label, item.html_options.merge(href: url)
         else
           span label, item.html_options
         end

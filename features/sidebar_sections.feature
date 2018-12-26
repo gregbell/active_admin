@@ -17,7 +17,7 @@ Feature: Sidebar Sections
     """
     When I am on the index page for posts
     Then I should see a sidebar titled "Help"
-    And I should see "Need help" within the "Help" sidebar
+    Then I should see "Need help" within the "Help" sidebar
 
     When I follow "View"
     Then I should see a sidebar titled "Help"
@@ -26,8 +26,9 @@ Feature: Sidebar Sections
     Then I should see a sidebar titled "Help"
 
     When I am on the index page for posts
-    And I follow "New Post"
+    When I follow "New Post"
     Then I should see a sidebar titled "Help"
+
 
   Scenario: Create a sidebar for only one action
     Given a configuration of:
@@ -40,7 +41,7 @@ Feature: Sidebar Sections
     """
     When I am on the index page for posts
     Then I should see a sidebar titled "Help"
-    And I should see "Need help" within the "Help" sidebar
+    Then I should see "Need help" within the "Help" sidebar
 
     When I follow "View"
     Then I should not see a sidebar titled "Help"
@@ -49,8 +50,9 @@ Feature: Sidebar Sections
     Then I should not see a sidebar titled "Help"
 
     When I am on the index page for posts
-    And I follow "New Post"
+    When I follow "New Post"
     Then I should not see a sidebar titled "Help"
+
 
   Scenario: Create a sidebar for all except one action
     Given a configuration of:
@@ -71,7 +73,7 @@ Feature: Sidebar Sections
     Then I should see a sidebar titled "Help"
 
     When I am on the index page for posts
-    And I follow "New Post"
+    When I follow "New Post"
     Then I should see a sidebar titled "Help"
 
   Scenario: Create a sidebar for only one action with if clause that returns false
@@ -93,7 +95,7 @@ Feature: Sidebar Sections
     Then I should not see a sidebar titled "Help"
 
     When I am on the index page for posts
-    And I follow "New Post"
+    When I follow "New Post"
     Then I should not see a sidebar titled "Help"
 
   Scenario: Create a sidebar for only one action with if clause with method symbol
@@ -119,7 +121,7 @@ Feature: Sidebar Sections
     Then I should not see a sidebar titled "Help"
 
     When I am on the index page for posts
-    And I follow "New Post"
+    When I follow "New Post"
     Then I should not see a sidebar titled "Help"
 
   Scenario: Create a sidebar for only one action with if clause that returns true
@@ -136,13 +138,13 @@ Feature: Sidebar Sections
 
     When I follow "View"
     Then I should see a sidebar titled "Help"
-    And I should see "Need help" within the "Help" sidebar
+    Then I should see "Need help" within the "Help" sidebar
 
     When I follow "Edit Post"
     Then I should not see a sidebar titled "Help"
 
     When I am on the index page for posts
-    And I follow "New Post"
+    When I follow "New Post"
     Then I should not see a sidebar titled "Help"
 
   Scenario: Create a sidebar with deep content
@@ -166,13 +168,12 @@ Feature: Sidebar Sections
     And I should see "First List First Item" within the "Help" sidebar
     And I should see "Second List Second Item" within the "Help" sidebar
 
-  @changes-filesystem
   Scenario: Rendering sidebar by default without a block or partial name
     Given "app/views/admin/posts/_help_sidebar.html.erb" contains:
     """
       <p>Hello World from a partial</p>
     """
-    And a configuration of:
+    Given a configuration of:
     """
     ActiveAdmin.register Post do
       sidebar :help
@@ -181,13 +182,12 @@ Feature: Sidebar Sections
     When I am on the index page for posts
     Then I should see "Hello World from a partial" within the "Help" sidebar
 
-  @changes-filesystem
   Scenario: Rendering a partial as the sidebar content
     Given "app/views/admin/posts/_custom_help_partial.html.erb" contains:
     """
       <p>Hello World from a custom partial</p>
     """
-    And a configuration of:
+    Given a configuration of:
     """
     ActiveAdmin.register Post do
       sidebar :help, partial: "custom_help_partial"
@@ -195,6 +195,7 @@ Feature: Sidebar Sections
     """
     When I am on the index page for posts
     Then I should see "Hello World from a custom partial" within the "Help" sidebar
+
 
   Scenario: Position sidebar at the top using priority option
     Given a configuration of:

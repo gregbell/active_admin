@@ -3,7 +3,11 @@ Feature: User Logging In
   Logging in to the system as an admin user
 
   Background:
-    Given I am logged out
+    Given a configuration of:
+    """
+      ActiveAdmin.register Post
+    """
+    And I am logged out
     And an admin user "admin@example.com" exists
     When I go to the dashboard
 

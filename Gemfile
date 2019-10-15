@@ -6,6 +6,8 @@ group :release do
   gem 'chandler', '0.9.0' # Github releases from changelog
 end
 
+gem "csv", "~> 3.1", ">= 3.1.2"
+
 group :lint do
   # Code style
   gem 'rubocop', '0.75.0'
@@ -23,7 +25,9 @@ group :docs do
   gem 'kramdown' # Markdown implementation (for yard)
 end
 
-gem "rails", "~> 6.0.0"
+gem "rails", "~> 6.0.0", git: "https://github.com/rails/rails", branch: "6-0-stable"
 gem "activerecord-jdbcsqlite3-adapter", "~> 60.0.rc1", platform: :jruby
+
+gem "ransack", git: "https://github.com/deivid-rodriguez/ransack", branch: "add_2.7_support"
 
 gemspec path: "."

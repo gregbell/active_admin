@@ -41,12 +41,21 @@ module ActiveAdmin
       @columns << Column.new(name, @resource, column_transitive_options.merge(options), block)
     end
 
+    def page_count
+      max_page_count = @options[:max_batch_page_count] || 0
+      batch_page_count = paginated_collection.total_pages
+      batch_page_count = max_page_count if max_page_count > 0 && batch_page_count > max_page_count
+      return batch_page_count
+    end
+
     def build(controller, csv)
       @collection  = controller.send :find_collection, except: :pagination
       columns      = exec_columns controller.view_context
       bom          = options.delete :byte_order_mark
       column_names = options.delete(:column_names) { true }
-      csv_options  = options.except :encoding_options, :humanize_name
+      csv_options  = options.except(
+        :encoding_options, :humanize_name, :batch_size, :max_batch_page_count
+      )
 
       csv << bom if bom
 
@@ -55,7 +64,7 @@ module ActiveAdmin
       end
 
       ActiveRecord::Base.uncached do
-        (1..paginated_collection.total_pages).each do |page|
+        (1..page_count).each do |page|
           paginated_collection(page).each do |resource|
             resource = controller.send :apply_decorator, resource
             csv << CSV.generate_line(build_row(resource, columns, options), **csv_options)
@@ -130,7 +139,9 @@ module ActiveAdmin
     end
 
     def batch_size
-      1000
+      batch_size = @options[:batch_size] || 1000
+      batch_size = 1 if batch_size < 1
+      return batch_size
     end
   end
 end

@@ -83,6 +83,8 @@ module ActiveAdmin
       end
 
       def find_class?
+        return false if condition_attribute.klass.column_names.include?(name.to_s)
+
         ['eq', 'in'].include? condition.predicate.arel_predicate
       end
 

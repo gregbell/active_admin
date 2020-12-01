@@ -31,14 +31,13 @@ version: 2.1
   run:
     name: Install dependencies
     command: |
-      bundle config set --local path /root/project/vendor/bundle
       bundle install --jobs 3
 
 .save_gems: &save_gems
   save_cache:
     key: bundler-dependencies-{{ checksum "current_gemfile.lock" }}-{{ .Environment.CIRCLE_JOB }}
     paths:
-      - vendor/bundle
+      - .bundle
 
 .create_test_app: &create_test_app
   run:

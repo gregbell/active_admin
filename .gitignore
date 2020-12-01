@@ -5,6 +5,7 @@
 /.ruby-version
 /pkg
 .bundle
+!.bundle/config
 /.rspec_failures
 /node_modules
 /src

@@ -4,7 +4,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def create?
-    record.category.name != "Announcements" || user.is_a?(User::VIP)
+    record.category.nil? || record.category.name != "Announcements" || user.is_a?(User::VIP)
   end
 
   def update?
